@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premiere Residencial</title>
+    <meta
+      name="description"
+      content="Viva o extraordinário no Premiere Residencial. O lugar ideal para sua família."
+    />
+    <link rel="icon" href="resources/logo.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      .logo-header {
+        background: linear-gradient(135deg, #333, #555);
+        color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 40px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        position: fixed;
+        border-bottom: 5px solid;
+        border-image: linear-gradient(to right, #5e5e5e, #060606, #3d3d2b) 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .logo-header h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffd90072;
+        margin: 0;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+      }
+      .logo-header nav {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      .logo-header nav a {
+        color: #f0f0f0;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .logo-header nav a:hover {
+        background-color: #ffd9007e;
+        color: #333;
+      }
+
+      .logo-header .cta-button {
+        background: linear-gradient(135deg, #ffd90079, #ffc1077c);
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .logo-header .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .carousel {
+        margin-top: 100px;
+        margin-bottom: 30px;
+        max-width: 1200px;
+        height: 65vh;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #333, #222);
+      }
+      .carousel-item img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease-in-out;
+      }
+      .carousel-item img:hover {
+        transform: scale(1.05);
+      }
+
+      .info-section {
+        background: linear-gradient(135deg, #444, #222);
+        padding: 50px 20px;
+        text-align: center;
+        color: #f0f0f0;
+        position: relative;
+      }
+      .info-section::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .info-section h2 {
+        font-size: 32px;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      }
+      .info-section p {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+
+      .payment-section {
+        background: linear-gradient(to bottom right, #ddd, #bbb);
+        padding: 40px 20px;
+        text-align: center;
+        color: #333;
+        border-radius: 10px;
+        margin: 20px auto;
+        width: 80%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .payment-section h2 {
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .payment-section ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+      }
+      .payment-section ul li {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+
+      .cards-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+      .cards-section::before {
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .card {
+        margin: 0 auto;
+        background: linear-gradient(135deg, #ffffff, #ffffff);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        width: 300px;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        color: #555;
+        transition: transform 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+      }
+      .card img {
+        justify-items: center;
+        align-items: center;
+        width: 80px;
+        height: 80px;
+      }
+      .card p {
+        font-size: 16px;
+      }
+
+      .contact-section {
+        background: linear-gradient(135deg, #222, #333);
+        padding: 50px 20px;
+        color: #fff;
+        text-align: center;
+        position: relative;
+        margin-top: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .contact-section h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+      .contact-section form {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .contact-section form .form-control {
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+      }
+      .contact-section form .btn {
+        background: linear-gradient(135deg, #555, #333);
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        transition: background 0.3s;
+      }
+      .contact-section form .btn:hover {
+        background: linear-gradient(135deg, #777, #555);
+      }
+
+      footer {
+        background-color: #111;
+        color: #f0f0f0;
+        text-align: center;
+        padding: 20px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      footer p {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .whatsapp-button {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      .whatsapp-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+      }
+      .whatsapp-button img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .testimonials-section {
+        background: linear-gradient(135deg, #fff, #eee);
+        padding: 50px 20px;
+        text-align: center;
+      }
+      .testimonials-section h2 {
+        font-size: 32px;
+        margin-bottom: 30px;
+        color: #333;
+      }
+      .testimonial {
+        background: #f0f0f0;
+        padding: 20px;
+        margin: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .testimonial img {
+        border-radius: 50%;
+        width: 60px;
+        margin-bottom: 15px;
+      }
+      .testimonial p {
+        font-size: 16px;
+        color: #555;
+      }
+
+      .gallery-images {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+      }
+      .gallery-section h2 {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 30px;
+        color: #333;
+      }
+      .gallery-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+      }
+      .gallery-images img {
+        border-radius: 10px;
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out;
+      }
+      .gallery-images img:hover {
+        transform: scale(1.05);
+      }
+
+      .video-section {
+        background: linear-gradient(135deg, #333, #444);
+        padding: 50px 20px;
+        color: #fff;
+        text-align: center;
+      }
+      .video-section h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      }
+      .video-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 800px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+      }
+      .video-container video {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+      @media (max-width: 768px) {
+        .logo-header {
+          background: linear-gradient(135deg, #333, #555);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+          padding: 10px 20px;
+          text-align: center;
+          justify-content: center;
+        }
+
+        .logo-header nav {
+          display: none;
+        }
+
+        .logo-header h1 {
+          font-size: 28px;
+          margin: 0;
+          color: #ffd90072;
+        }
+
+        .carousel {
+          border-radius: 0;
+          margin-top: 30px;
+          margin-bottom: 0px;
+          max-width: 100%;
+          height: auto;
+        }
+
+        .carousel-inner {
+          border-radius: 0;
+        }
+
+        .carousel-item img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+
+        section {
+          margin-top: 0;
+          padding-top: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="logo-header">
+      <div style="display: flex; align-items: center">
+        <h1>Premiere Residencial</h1>
+      </div>
+      <nav>
+        <a href="#info">Sobre</a>
+        <a href="#cards">Destaques</a>
+        <a href="#contato">Contato</a>
+        <button class="cta-button">Saiba Mais</button>
+      </nav>
+    </header>
+
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="5000">
+          <!-- 5 segundos -->
+          <img
+            src="resources/EXTERIOR01.jpeg"
+            class="d-block w-100"
+            alt="Imagem 1"
+          />
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+          <img
+            src="resources/faixada02.jpeg"
+            class="d-block w-100"
+            alt="Imagem 7"
+          />
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+          <img
+            src="resources/EXTERIOR02.jpeg"
+            class="d-block w-100"
+            alt="Imagem 2"
+          />
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+          <img
+            src="resources/EXTERIORNOITE.jpeg"
+            class="d-block w-100"
+            alt="Imagem 3"
+          />
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+          <img
+            src="resources/EXTERIOR03.jpeg"
+            class="d-block w-100"
+            alt="Imagem 4"
+          />
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img
+          src="resources/EXTERIORNOITE02.jpeg"
+          class="d-block w-100"
+          alt="Imagem 5"
+        />
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img
+          src="resources/faixada01.jpeg"
+          class="d-block w-100"
+          alt="Imagem 6"
+        />
+      </div>
+
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+
+    <section id="info" class="info-section">
+      <h2>Preço: R$ 420.000,00</h2>
+      <p>
+        Localização: Millôr Fernandes, n°2621-S, Lote 20A, Quadra n°02, Setor
+        n°35 <br />
+        Bairro Parque das Americas, Lucas do Rio Verde - MT, 78.455-000
+      </p>
+      <p>Telefone: (65) 99324-2992</p>
+
+      <div class="payment-section">
+        <h2>Formas de Pagamento</h2>
+        <ul>
+          <li>Financiamento Bancário</li>
+          <li>Consórcio Imobiliário</li>
+          <li>Entrada + Parcelamento Direto com a Construtora</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="cards" class="cards-section">
+      <div class="card">
+        <img src="resources/security.svg" alt="Segurança" />
+        <h3>Segurança</h3>
+        <p>Sistema de monitoramente 24 horas por dia.</p>
+      </div>
+      <div class="card">
+        <img src="resources/house-water-svgrepo-com.svg" alt="Piscina" />
+        <h3>Lavanderia</h3>
+        <p>Espaço reservado para sua lavar suas roupas com tranquilidade.</p>
+      </div>
+      <div class="card">
+        <img src="resources/house-user-svgrepo-com.svg" alt="Academia" />
+        <h3>Quartos</h3>
+        <p>
+          A Residência conta com dois quartos de 9,84m e 12,66m2
+          respectivamente.
+        </p>
+      </div>
+      <div class="card">
+        <img
+          src="resources/house-check-svgrepo-com.svg"
+          alt="Salão de Festas"
+        />
+        <h3>Sala e Cozinha</h3>
+        <p>A residencia conta com sala e cozinha no modelo americano.</p>
+      </div>
+    </section>
+
+    <section id="video" class="video-section">
+        <h2>Conheça Mais Sobre o Premiere Residencial</h2>
+        <div class="video-container">
+          <video controls>
+            <source src="resources/video.mp4" type="video/mp4" />
+            Seu navegador não suporta o elemento de vídeo.
+          </video>
+        </div>
+      </section>
+
+    <section class="testimonials-section">
+      <h2>O Que Nossos Clientes Dizem</h2>
+      <div class="testimonial">
+        <img src="resources/client.svg" alt="Cliente 1" />
+        <p>
+          "A melhor decisão da minha vida foi escolher o Premiere Residencial."
+        </p>
+      </div>
+      <div class="testimonial">
+        <img src="resources/client1.svg" alt="Cliente 2" />
+        <p>"Espaços incríveis, segurança e conforto para toda a família."</p>
+      </div>
+    </section>
+    
+    <section class="gallery-section">
+      <h2>Interior da Residência</h2>
+      <div class="gallery-images">
+        <img src="resources/sala.jpeg" alt="Sala de Estar" />
+        <img src="resources/quarto.jpeg" alt="Quarto" />
+        <img src="resources/cozinha.jpeg" alt="Cozinha" />
+        <img src="resources/lavanderia.jpeg" alt="Piscina" />
+      </div>
+    </section>
+
+
+    <section id="contato" class="contact-section">
+      <h2>Entre em Contato</h2>
+      <form>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Seu Nome"
+          required
+        />
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Seu E-mail"
+          required
+        />
+        <textarea
+          class="form-control"
+          rows="4"
+          placeholder="Sua Mensagem"
+          required
+        ></textarea>
+        <button type="submit" class="btn">Enviar</button>
+      </form>
+    </section>
+
+    <button
+      class="whatsapp-button"
+      onclick="window.open('https://wa.me/5565993242992', '_blank')"
+    >
+      <img src="resources/whatsapp.svg" alt="WhatsApp" />
+    </button>
+
+    <footer id="footer">
+      <p>&copy; 2025 Premiere Residencial - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
+<script>
+  document
+    .getElementById("contactForm")
+    .addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        alert("Por favor, preencha todos os campos antes de enviar.");
+        return;
+      }
+
+      const recipient = "residencialpremier01@gmail.com";
+      const subject = encodeURIComponent("Contato pelo site");
+      const body = encodeURIComponent(
+        `Nome: ${name}\nE-mail: ${email}\nMensagem: ${message}`
+      );
+
+      const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+
+      alert("Redirecionando para o cliente de e-mail. Obrigado pelo contato!");
+    });
+</script>
